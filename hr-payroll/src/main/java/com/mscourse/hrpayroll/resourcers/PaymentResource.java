@@ -22,5 +22,4 @@ public class PaymentResource {
         return ResponseEntity.ok().body(payment);
     }
 
-
 }
