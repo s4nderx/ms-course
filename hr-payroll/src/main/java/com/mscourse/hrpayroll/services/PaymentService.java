@@ -4,6 +4,7 @@ import com.mscourse.hrpayroll.entities.Payment;
 import com.mscourse.hrpayroll.entities.Worker;
 import com.mscourse.hrpayroll.feignClients.WorkerFeignClients;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Service;
 
 @Service
