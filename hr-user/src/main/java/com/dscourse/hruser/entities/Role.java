@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "tb_role")
 public class Role implements Serializable {
-    private static final long serialVersionUID = 4657498357925361836L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,7 @@ public class Role implements Serializable {
     }
 
     public Role(Long id, String roleName) {
+        super();
         this.id = id;
         this.roleName = roleName;
     }
@@ -39,15 +40,27 @@ public class Role implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return id.equals(role.id);
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Role other = (Role) obj;
+        if (roleName == null) {
+            if (other.roleName != null)
+                return false;
+        } else if (!roleName.equals(other.roleName))
+            return false;
+        return true;
     }
 }

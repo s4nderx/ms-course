@@ -1,6 +1,5 @@
 package com.mscourse.hroauth.config;
 
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,17 +16,17 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    private final BCryptPasswordEncoder passwordEncoder;
-    private final JwtAccessTokenConverter accessTokenConverter;
-    private final JwtTokenStore tokenStore;
-    private final AuthenticationManager authenticationManager;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-    public AuthorizationServerConfig(BCryptPasswordEncoder passwordEncoder, JwtAccessTokenConverter accessTokenConverter, JwtTokenStore tokenStore, AuthenticationManager authenticationManager) {
-        this.passwordEncoder = passwordEncoder;
-        this.accessTokenConverter = accessTokenConverter;
-        this.tokenStore = tokenStore;
-        this.authenticationManager = authenticationManager;
-    }
+    @Autowired
+    private JwtAccessTokenConverter accessTokenConverter;
+
+    @Autowired
+    private JwtTokenStore tokenStore;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
