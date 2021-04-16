@@ -1,6 +1,7 @@
 package com.dscourse.hruser;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableEurekaClient
 @SpringBootApplication
 public class HrUserApplication implements CommandLineRunner {
+
+    @Value("${my.config.test}")
+    private String configString;
 
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -24,5 +28,6 @@ public class HrUserApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("BCRIPT = " + passwordEncoder.encode("123456"));
+        System.out.println(this.configString);
     }
 }
